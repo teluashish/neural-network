@@ -98,11 +98,11 @@ def accuracy(instance, test_file_name):
     true_count += 1 if np.argmax(final_outputs) == test_labels[idx] else 0
   return true_count / len(test_inputs)
 
-instance = NeuralNetwork(784, 200, 10, 0.2)
+instance = NeuralNetwork(784, 200, 10, 0.01)
 train_df = pd.read_csv("mnist_train.csv")
 train_inputs, train_labels = train_df.drop("label", axis = 1).to_numpy(), train_df["label"].to_numpy()
 
-epochs = 7
+epochs = 10
 for _ in range(epochs):
   train(instance, train_inputs, train_labels)
 print(accuracy(instance, "mnist_test.csv"))
